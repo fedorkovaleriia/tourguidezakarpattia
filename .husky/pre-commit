@@ -1,8 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Лінтуємо лише свій src
 npx eslint "src/**/*.{js,jsx,ts,tsx}" --fix
 
-# Форматування через prettier
 npx prettier --write "src/**/*.{js,jsx,ts,tsx}"
