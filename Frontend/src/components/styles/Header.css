@@ -1,0 +1,42 @@
+.header {
+  font-family: 'Rounded Mplus 1c', sans-serif;
+  font-size: 36px; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(7px); 
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 5px;
+}
+
+.main-title {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #314B10;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 20px;
+}
+.separator{
+  text-decoration: none;
+  color: #314B10;
+  font-size: 20px;
+}
+.nav-link {
+  text-decoration: none;
+  color: #314B10;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+
+.nav-link:hover {
+  color: white;
+}
