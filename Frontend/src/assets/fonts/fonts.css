@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Rounded Mplus 1c';
+  src: url('./M_PLUS_Rounded_1c/MPLUSRounded1c-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Rounded Mplus 1c', sans-serif;
+}
