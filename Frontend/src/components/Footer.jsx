@@ -1,18 +1,20 @@
 import React from 'react';
-import './styles/Footer.css';
+import styles from './styles/Footer.module.css';
 
-export default function Footer() {
+export default function Footer({ page }) {
   return (
-    <footer className="footer">
-      <p className="footer-text">
+    <footer
+      className={`${styles.footer} ${page === 'green' ? styles.green : styles.beige}`}
+    >
+      <p className={styles.footerText}>
         Старовинні замки, величні Карпати, термальні джерела та автентична кухня
         — усе в Закарпатті
       </p>
 
-      <div className="contact-info">
-        <p className="location">Ужгород, Україна</p>
-        <p className="phone">+380**********</p>
-        <p className="email">zakarpattia@tour.ua</p>
+      <div className={styles.contactInfo}>
+        <p className={styles.location}>📍Ужгород, Україна</p>
+        <p className={styles.phone}>+380**********</p>
+        <p className={styles.email}>zakarpattia@tour.ua</p>
       </div>
     </footer>
   );

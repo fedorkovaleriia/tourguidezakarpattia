@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles/TourCard.css';
+import styles from './styles/TourCard.module.css';
 
 export default function TourCard({ image, title, description, onClick }) {
   return (
-    <button className="tour-card" onClick={onClick}>
-      <img src={image} alt={title} className="tour-card-image" />
-      <h3 className="tour-card-title">{title}</h3>
-      <p className="tour-card-description">{description}</p>
+    <button className={styles.tourCard} onClick={onClick}>
+      <img src={image} alt={title} className={styles.tourCardImage} />
+      <h3 className={styles.tourCardTitle}>{title}</h3>
+      <p className={styles.tourCardDescription}>{description}</p>
     </button>
   );
 }

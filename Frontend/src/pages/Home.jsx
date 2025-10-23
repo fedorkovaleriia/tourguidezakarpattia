@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import './styles/Home.css';
+import styles from './styles/Home.module.css';
 import TourCard from '../components/TourCard';
 import synevyr from '../assets/images/synevyr.jpg';
 import uzhzamok from '../assets/images/uzhgorodskiyzamok.jpg';
@@ -10,18 +10,18 @@ import mukzamok from '../assets/images/zamokpalanok.jpg';
 export default function Home() {
   return (
     <>
-      <div className="app-container">
+      <div className={styles.appContainer}>
         <Header />
-        <div className="text-container">
-          <h1 className="text-main">
+        <div className={styles.textContainer}>
+          <h1 className={styles.textMain}>
             Старовинні замки, величні Карпати, термальні джерела та автентична
             кухня — усе в Закарпатті
           </h1>
         </div>
       </div>
-      <section className="green-section">
-        <div className="curve"></div>
-        <div className="cards-container">
+      <section className={styles.greenSection}>
+        <div className={styles.curve}></div>
+        <div className={styles.cardsContainer}>
           <TourCard
             image={mukzamok}
             title="Замок Паланок"
@@ -39,7 +39,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <Footer />
+      <Footer page="green" />
     </>
   );
 }

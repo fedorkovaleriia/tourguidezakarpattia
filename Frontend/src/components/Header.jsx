@@ -1,20 +1,20 @@
 import React from 'react';
-import './styles/Header.css';
+import styles from './styles/Header.module.css';
 
 export default function Header() {
   return (
-    <header className="header">
-      <h1 className="main-title">Туристичний гід Закарпаття</h1>
+    <header className={styles.header}>
+      <h1 className={styles.mainTitle}>Туристичний гід Закарпаття</h1>
 
-      <nav className="navigation">
-        <a className="separator">І</a>
-        <a href="#mini-guide" className="nav-link">
+      <nav className={styles.navigation}>
+        <a className={styles.separator}>І</a>
+        <a href="#mini-guide" className={styles.navLink}>
           Міні-гід
         </a>
-        <a href="#catalog" className="nav-link">
+        <a href="#catalog" className={styles.navLink}>
           Каталог локацій
         </a>
-        <a href="#account" className="nav-link">
+        <a href="#account" className={styles.navLink}>
           Акаунт
         </a>
       </nav>
