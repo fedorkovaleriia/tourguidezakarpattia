@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import LocationCard from '../components/LocationCard';
+import MiniGuideCard from '../components/MiniGuideCard';
 import FilterLocation from '../components/FilterLocation';
 import styles from './styles/MiniGuide.module.css';
 import kosyno from '../assets/images/kosyno.jpg';
@@ -23,24 +23,24 @@ export default function MiniGuide() {
         <div className={styles.filterWrapper}>
           <FilterLocation />
         </div>
-        <LocationCard
+        <MiniGuideCard
           image={kankiv}
-          title="Замок Канків"
-          description="Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням."
+          title="Від Паланку до Канкова "
+          route="Мукачево (Замок Паланок) → Виноградів (Замок Канків) → Берегове"
           rating="5/5"
           visits="X візитів"
         />
-        <LocationCard
+        <MiniGuideCard
           image={kosyno}
-          title="Термальні води Косино"
-          description="Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами."
+          title="Угорський колорит Закарпаття + Термали"
+          route="Берегово → Термальні води Косино"
           rating="5/5"
           visits="X візитів"
         />
-        <LocationCard
+        <MiniGuideCard
           image={synevyr}
-          title="Синевирське озеро"
-          description="Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами."
+          title="Легенди Синевиру: день у серці Карпат"
+          route="Міжгір’я → Озеро Синевир → Реабілітаційний центр ведмедів → Колочава"
           rating="5/5"
           visits="X візитів"
         />
