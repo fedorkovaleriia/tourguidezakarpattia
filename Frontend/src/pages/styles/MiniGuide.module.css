@@ -1,0 +1,54 @@
+body,
+html {
+  margin: 0;
+  background-color: #b38e58;
+  padding: 0;
+  height: 100%;
+}
+
+.appContainer {
+  padding-top: 90px;
+  min-height: 90vh;
+  background-image: url('./mainfoto.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.textContainer {
+  display: flex;
+  font-size: 40px;
+  justify-content: center;
+  margin-top: 5px;
+  text-align: center;
+  padding: 20px;
+  color: #314b10;
+}
+.filterWrapper {
+  width: 200px;
+  display: flex; 
+  margin-bottom: 70px;
+  margin-left: 1150px;
+}
+
+.beigeSection {
+  position: relative;
+  background: linear-gradient(to bottom, #b38e58 0%, #b38e58 100%);
+  color: #314b10;
+  padding-top: 50px;
+  padding-bottom: 120px;
+  margin-top: -350px;
+  clip-path: ellipse(100% 90% at 60% 60%);
+}
+
+.curve {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: #b38e58;
+  border-top-left-radius: 100% 80px;
+  border-top-right-radius: 100% 80px;
+}

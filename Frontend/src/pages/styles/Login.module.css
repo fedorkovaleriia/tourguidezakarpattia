@@ -1,0 +1,133 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.appContainer {
+  padding-top: 90px;
+  min-height: 100vh;
+  background-image: url('./mainfoto.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.textContainer {
+  position: absolute;
+  top: 10;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.beigeSection {
+  position: relative;
+  color: #b38e58;
+  padding-top: 100px;
+  padding-bottom: 120px;
+  margin-top: -30px;
+  background: #b38e58;
+  border-radius: 0;
+}
+
+.curve {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: #b38e58;
+  border-top-left-radius: 100% 80px;
+  border-top-right-radius: 100% 80px;
+}
+.overlayRectangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  width: 450px;
+  height: 550px;
+  background-color: #314b10;
+  backdrop-filter: blur(7px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  border-radius: 20px;
+}
+.overlayRectangle h2 {
+  margin-top: -10px;
+  margin-bottom: 50px;
+  color: #fff;
+  font-size: 40px;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loginForm input {
+  color: #fff;
+  margin-left: auto;
+  width: 300px;
+  height: 25px;
+  margin-right: auto;
+  margin-bottom: 25px;
+  padding: 10px;
+  background-color: #b38e58;
+  border: 1px solid #314b10;
+  border-radius: 25px;
+  font-size: 16px;
+}
+.loginForm input::placeholder {
+  color: white;
+  font-weight: bold;
+  padding-left: 10px;
+  opacity: 1;
+}
+.loginForm button {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  background-color: #b38e58;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.loginForm button:hover {
+  color: #4b6120;
+}
+
+.registerLink {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+
+.registerLink a {
+  color: #b38e58;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}

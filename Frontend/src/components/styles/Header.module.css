@@ -1,0 +1,45 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(7px);
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
+}
+
+.mainTitle {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #314b10;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 20px;
+}
+.separator {
+  text-decoration: none;
+  color: #314b10;
+  font-size: 20px;
+}
+.navLink {
+  text-decoration: none;
+  color: #314b10;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #b38e58;
+}

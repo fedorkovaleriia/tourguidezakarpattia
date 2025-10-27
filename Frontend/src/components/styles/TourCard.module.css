@@ -1,0 +1,50 @@
+.tourCard {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(7px);
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+  padding: 20px;
+  color: #b38e58;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+.cardsContainer .tourCard:nth-child(2) {
+  transform: translateY(-80px);
+  z-index: 3;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.cardsContainer .tourCard:nth-child(2):hover {
+  transform: translateY(-86px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tourCard:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.tourCard:active {
+  transform: scale(0.98);
+}
+
+.tourCardImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.tourCardTitle {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.tourCardDescription {
+  font-size: 1rem;
+  opacity: 0.9;
+}
