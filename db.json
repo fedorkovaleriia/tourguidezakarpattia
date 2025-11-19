@@ -1,0 +1,86 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Valeriia",
+      "email": "test@example.com",
+      "password": "test123"
+    },
+    {
+      "email": "test1@example.com",
+      "password": "$2a$10$d8AqN2BVjxV7.fUi9v4GMuL2KjXuuXNZrMHDFwuUo08u.VzdeCBey",
+      "id": 2
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$ylZj72Gi6KsmjlFrCudSOOAlgNdqpybttZjTPGcTjVscjyvvn5l5K",
+      "username": "Valeriia",
+      "id": 3
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "title": "Замок Канків",
+      "description": "Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням.",
+      "lat": 48.14,
+      "lng": 23.05,
+      "image": "/images/kankiv.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    },
+    {
+      "id": 2,
+      "title": "Термальні води Косино",
+      "description": "Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами.",
+      "lat": 48.33,
+      "lng": 22.69,
+      "image": "/images/kosyno.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    },
+    {
+      "id": 3,
+      "title": "Синевирське озеро",
+      "description": "Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами.",
+      "lat": 48.62,
+      "lng": 23.56,
+      "image": "/images/synevyr.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "title": "Замок Канків",
+      "description": "Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням.",
+      "image": "/images/kankiv.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    },
+    {
+      "id": 2,
+      "title": "Термальні води Косино",
+      "description": "Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами.",
+      "image": "/images/kosyno.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    },
+    {
+      "id": 3,
+      "title": "Синевирське озеро",
+      "description": "Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами.",
+      "image": "/images/synevyr.jpg",
+      "rating": "5/5",
+      "visits": "X візитів"
+    }
+  ],
+  "tours": [],
+
+  "cities": [
+  { "id": 1, "name": "Ужгород", "description": "Столиця Закарпаття" },
+  { "id": 2, "name": "Мукачево", "description": "Замок Паланок" }
+]
+
+}

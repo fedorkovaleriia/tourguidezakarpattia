@@ -34,6 +34,9 @@
   color: #fff;
   opacity: 0.5;
 }
+.star:hover {
+  transform: scale(1.1);
+}
 .stats {
   display: flex;
   gap: 20px;
