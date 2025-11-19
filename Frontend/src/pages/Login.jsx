@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from './styles/Login.module.css';
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('/account');
+  };
   return (
     <>
       <div className={styles.appContainer}>
@@ -28,11 +34,13 @@ export default function Login() {
               required
             />
 
-            <button type="submit">Увійти</button>
+            <button onClick={handleLogin} type="submit">
+              Увійти
+            </button>
           </form>
           <p className={styles.registerLink}>
             Ще нема акаунту? <br />
-            <a>Зареєструйся</a>
+            <Link to="/register">Зареєструйся</Link>
           </p>
         </div>
       </div>

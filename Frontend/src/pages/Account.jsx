@@ -1,13 +1,18 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
+import { useNavigate } from 'react-router-dom';
 import LocationCard from '../components/LocationCard';
 import styles from './styles/Account.module.css';
 
 import synevyr from '../assets/images/synevyr.jpg';
 
 export default function Account() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/login');
+  };
   return (
     <>
       <div className={styles.appContainer}>
@@ -21,6 +26,9 @@ export default function Account() {
         <div className={styles.buttonWrapper}>
           <button className={styles.actionButton}>Обрані локації</button>
           <button className={styles.actionButton}>Міні-гід</button>
+          <button onClick={handleLogout} className={styles.actionButton}>
+            Вийти
+          </button>
         </div>
         <div className={styles.locationsWrapper}>
           <LocationCard

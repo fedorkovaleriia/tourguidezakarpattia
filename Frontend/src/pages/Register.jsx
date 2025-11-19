@@ -1,9 +1,15 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import styles from './styles/Register.module.css';
 
 export default function Register() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate('/account');
+  };
   return (
     <>
       <div className={styles.appContainer}>
@@ -36,11 +42,13 @@ export default function Register() {
               required
             />
 
-            <button type="submit">Увійти</button>
+            <button onClick={handleLogin} type="submit">
+              Увійти
+            </button>
           </form>
           <p className={styles.registerLink}>
             Вже створений акаунт? <br />
-            <a>Увійти</a>
+            <Link to="/login">Увійти</Link>
           </p>
         </div>
       </div>
