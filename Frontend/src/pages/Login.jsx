@@ -12,16 +12,15 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    await login(email, password); 
-    navigate('/account');         
-  } catch (error) {
-    alert(error.message);
-  }
-};
-
+    try {
+      await login(email, password);
+      navigate('/account');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <>

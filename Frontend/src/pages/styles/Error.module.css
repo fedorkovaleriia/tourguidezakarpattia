@@ -29,7 +29,7 @@ html {
   padding: 60px;
   box-sizing: border-box;
 }
-.title{
+.title {
   font-size: 140px;
   font-weight: 900;
   color: #314b10;
@@ -38,12 +38,11 @@ html {
   letter-spacing: 3px;
 }
 
-.subtitle{
+.subtitle {
   font-size: 28px;
   font-weight: 500;
   color: #314b10;
   margin-bottom: 40px;
-
 }
 .backLink {
   display: block;
@@ -60,7 +59,10 @@ html {
   cursor: pointer;
   border: none;
   box-shadow: 0 6px 15px rgba(179, 142, 88, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease;
 }
 
 .backLink:hover {

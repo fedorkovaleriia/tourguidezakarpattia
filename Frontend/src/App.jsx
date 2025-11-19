@@ -12,18 +12,18 @@ import { useAuth } from './hooks/useAuth.jsx';
 
 function App() {
   function ProtectedRoute({ children }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
-}
+    const { user } = useAuth();
+    return user ? children : <Navigate to="/login" />;
+  }
   return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/locationdirectory" element={<LocationDirectory />} />
-        <Route path="/miniguide" element={<MiniGuide />} />
-        <Route path="/account" element={<Account />} />
-        <Route
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/locationdirectory" element={<LocationDirectory />} />
+      <Route path="/miniguide" element={<MiniGuide />} />
+      <Route path="/account" element={<Account />} />
+      <Route
         path="/account"
         element={
           <ProtectedRoute>
@@ -32,8 +32,8 @@ function App() {
         }
       />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
+      <Route path="*" element={<Error />} />
+    </Routes>
   );
 }
 

@@ -4,15 +4,18 @@ import FavoriteMiniguides from '../components/FavoriteMiniguides';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import LocationCard from '../components/LocationCard';
-import styles from './styles/Account.module.css';
-import useFavorites from '../hooks/useFavorites'; 
-import synevyr from '../assets/images/synevyr.jpg';
+import useFavorites from '../hooks/useFavorites';
 import { useAuth } from '../hooks/useAuth';
+import styles from './styles/Account.module.css';
 
 export default function Account() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  const { favorites } = useFavorites(user);
+
+  const [tab, setTab] = useState('locations');
+  const [favoriteIds, setFavoriteIds] = useState([]);
 
   useEffect(() => {
     if (!user) {
@@ -20,25 +23,16 @@ export default function Account() {
     }
   }, [user, navigate]);
 
+  useEffect(() => {
+    setFavoriteIds(favorites || []);
+  }, [favorites]);
+
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
   if (!user) return null;
-
-  const { favorites } = useFavorites(user);
-
-  const [tab, setTab] = useState("locations");
-  const [favoriteIds, setFavoriteIds] = useState([]);
-
-  useEffect(() => {
-    if (user) {
-      setFavoriteIds(favorites);
-    } else {
-      setFavoriteIds([]);
-    }
-  }, [user, favorites]);
 
   return (
     <>
@@ -55,26 +49,30 @@ export default function Account() {
         <div className={styles.curve}></div>
 
         <div className={styles.buttonWrapper}>
-          <button onClick={() => setTab('locations')} className={styles.actionButton}>
+          <button
+            onClick={() => setTab('locations')}
+            className={styles.actionButton}
+          >
             Обрані локації
           </button>
 
-          <button onClick={() => setTab('miniguides')} className={styles.actionButton}>
+          <button
+            onClick={() => setTab('miniguides')}
+            className={styles.actionButton}
+          >
             Міні-гід
           </button>
 
           <button onClick={handleLogout} className={styles.actionButton}>
             Вийти
           </button>
-
-          
         </div>
 
         <div className={styles.locationsWrapper}>
-          
-          {tab === 'locations' && <FavoriteLocations favoriteIds={favoriteIds} />}
-{tab === 'miniguides' && <FavoriteMiniguides />}
-
+          {tab === 'locations' && (
+            <FavoriteLocations favoriteIds={favoriteIds} />
+          )}
+          {tab === 'miniguides' && <FavoriteMiniguides />}
         </div>
       </section>
 

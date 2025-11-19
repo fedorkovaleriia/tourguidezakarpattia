@@ -2,20 +2,25 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import styles from './styles/MiniGuideCard.module.css';
 
-export default function MiniGuideCard({ image,
+export default function MiniGuideCard({
+  image,
   title,
   route,
   rating,
   visits,
   isFavorite,
-  onFavoriteToggle, }) {
+  onFavoriteToggle,
+}) {
   return (
     <div className={styles.card}>
       <img src={image} alt={title} className={styles.image} />
 
-      <div className={styles.star} onClick={onFavoriteToggle}
-        title={isFavorite ? 'Видалити з улюблених' : 'Додати в улюблені'} >
-        <FaStar size={34} color={isFavorite ? '#FFD700' : '#ccc'}/>
+      <div
+        className={styles.star}
+        onClick={onFavoriteToggle}
+        title={isFavorite ? 'Видалити з улюблених' : 'Додати в улюблені'}
+      >
+        <FaStar size={34} color={isFavorite ? '#FFD700' : '#ccc'} />
       </div>
 
       <div className={styles.info}>

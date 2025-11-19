@@ -9,7 +9,9 @@ export function AuthProvider({ children }) {
     const raw = localStorage.getItem('user');
     return raw ? JSON.parse(raw) : null;
   });
-  const [token, setToken] = useState(() => localStorage.getItem('token') || null);
+  const [token, setToken] = useState(
+    () => localStorage.getItem('token') || null
+  );
 
   useEffect(() => {
     if (user) localStorage.setItem('user', JSON.stringify(user));
@@ -35,13 +37,17 @@ export function AuthProvider({ children }) {
     throw new Error('Не вдалося увійти');
   };
 
-  const register = async (username,email, password) => {
+  const register = async (username, email, password) => {
     if (!username) throw new Error('Імʼя обовʼязкове');
     if (!email.includes('@')) throw new Error('Некоректний email');
     if (!password || password.length < 8)
       throw new Error('Пароль має бути ≥ 8 символів');
 
-    const data = await api.request('/register', 'POST', { username,email, password });
+    const data = await api.request('/register', 'POST', {
+      username,
+      email,
+      password,
+    });
 
     if (data.accessToken) {
       setToken(data.accessToken);
@@ -86,7 +92,7 @@ export function AuthProvider({ children }) {
         getFavorites,
         addFavorite,
         removeFavorite,
-        api
+        api,
       }}
     >
       {children}

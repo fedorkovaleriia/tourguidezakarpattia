@@ -16,11 +16,12 @@ import styles from './styles/LocationDirectory.module.css';
 
 export default function LocationDirectory() {
   const { user } = useAuth();
-  const { favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite } = useFavorites(user);
+  const { favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite } =
+    useFavorites(user);
   const cities = [
-    { id: 11, name: "Канків", lat: 48.14, lng: 23.05 },
-    { id: 12, name: "Косино", lat: 48.33, lng: 22.69 },
-    { id: 13, name: "Синевир", lat: 48.62, lng: 23.56 }
+    { id: 11, name: 'Канків', lat: 48.14, lng: 23.05 },
+    { id: 12, name: 'Косино', lat: 48.33, lng: 22.69 },
+    { id: 13, name: 'Синевир', lat: 48.62, lng: 23.56 },
   ];
 
   const refKankiv = useRef(null);
@@ -30,7 +31,7 @@ export default function LocationDirectory() {
   const refs = {
     11: refKankiv,
     12: refKosyno,
-    13: refSynevyr
+    13: refSynevyr,
   };
 
   const handleCityClick = (cityId) => {
@@ -51,7 +52,6 @@ export default function LocationDirectory() {
 
       <section className={styles.beigeSection}>
         <div className={styles.curve}></div>
-
         <div className={styles.mapWrapper}>
           <div className={styles.mapSection}>
             <div className={styles.mapContainer}>
@@ -68,39 +68,38 @@ export default function LocationDirectory() {
             </div>
           </div>
         </div>
-]
-          <LocationCard
-            image={kankiv}
-            ref={refKankiv}
-            title="Замок Канків"
-            description="Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(11)}
-            onFavoriteToggle={() => toggleFavorite(11)}
-          />]
-
-          <LocationCard
-            image={kosyno}
-            ref={refKosyno}
-            title="Термальні води Косино"
-            description="Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(12)}
-            onFavoriteToggle={() => toggleFavorite(12)}
-          />
-
-          <LocationCard
-            image={synevyr}
-            ref={refSynevyr}
-            title="Синевирське озеро"
-            description="Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(13)}
-            onFavoriteToggle={() => toggleFavorite(13)}
-          />
+        ]
+        <LocationCard
+          image={kankiv}
+          ref={refKankiv}
+          title="Замок Канків"
+          description="Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням."
+          rating="5/5"
+          visits="X візитів"
+          isFavorite={favorites.includes(11)}
+          onFavoriteToggle={() => toggleFavorite(11)}
+        />
+        ]
+        <LocationCard
+          image={kosyno}
+          ref={refKosyno}
+          title="Термальні води Косино"
+          description="Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами."
+          rating="5/5"
+          visits="X візитів"
+          isFavorite={favorites.includes(12)}
+          onFavoriteToggle={() => toggleFavorite(12)}
+        />
+        <LocationCard
+          image={synevyr}
+          ref={refSynevyr}
+          title="Синевирське озеро"
+          description="Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами."
+          rating="5/5"
+          visits="X візитів"
+          isFavorite={favorites.includes(13)}
+          onFavoriteToggle={() => toggleFavorite(13)}
+        />
       </section>
 
       <Footer page="beige" />

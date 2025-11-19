@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react';
 const zakarpattiaGeoJson = {
-  type: "FeatureCollection",
+  type: 'FeatureCollection',
   features: [
     {
-      type: "Feature",
-      properties: { name: "zakarpattia_oblast" },
+      type: 'Feature',
+      properties: { name: 'zakarpattia_oblast' },
       geometry: {
-        type: "MultiPolygon",
+        type: 'MultiPolygon',
         coordinates: [
           [
             [
@@ -237,17 +237,20 @@ const zakarpattiaGeoJson = {
               [22.165, 48.385],
               [22.135, 48.385],
               [22.115, 48.415],
-              [22.12, 48.43]
-            ]
-          ]
-        ]
-      }
-    }
-  ]
+              [22.12, 48.43],
+            ],
+          ],
+        ],
+      },
+    },
+  ],
 };
 
 function computeBBox(features) {
-  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  let minX = Infinity,
+    minY = Infinity,
+    maxX = -Infinity,
+    maxY = -Infinity;
   features.forEach((f) => {
     const coords = f.geometry.coordinates;
     coords.forEach((polyArray) => {
@@ -282,12 +285,12 @@ export default function Map({
   width = 800,
   height = 500,
   cities = [
-    { id: 1, name: "Канків", lat: 48.14, lng: 23.05 },
-    { id: 2, name: "Косино", lat: 48.33, lng: 22.69 },
-    { id: 3, name: "Синевир", lat: 48.62, lng: 23.56 }
+    { id: 1, name: 'Канків', lat: 48.14, lng: 23.05 },
+    { id: 2, name: 'Косино', lat: 48.33, lng: 22.69 },
+    { id: 3, name: 'Синевир', lat: 48.62, lng: 23.56 },
   ],
-  onCityClick = (id) => console.log("city", id),
-  onRegionClick = (name) => console.log("region", name)
+  onCityClick = (id) => console.log('city', id),
+  onRegionClick = (name) => console.log('region', name),
 }) {
   const bbox = useMemo(() => computeBBox(zakarpattiaGeoJson.features), []);
   const [hoveredRegion, setHoveredRegion] = useState(null);
@@ -295,16 +298,22 @@ export default function Map({
   const polygons = useMemo(() => {
     const arr = [];
     zakarpattiaGeoJson.features.forEach((f, fi) => {
-      const coordsMulti = f.geometry.coordinates; 
+      const coordsMulti = f.geometry.coordinates;
       coordsMulti.forEach((polyArray, pIndex) => {
         polyArray.forEach((ring, rIndex) => {
           const d = ring
             .map(([lon, lat], i) => {
               const [x, y] = lonLatToXY(lon, lat, bbox, width, height, 20);
-              return `${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
+              return `${i === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`;
             })
-            .join(" ");
-          arr.push({ d: d + " Z", properties: f.properties, featureIndex: fi, polyIndex: pIndex, ringIndex: rIndex });
+            .join(' ');
+          arr.push({
+            d: d + ' Z',
+            properties: f.properties,
+            featureIndex: fi,
+            polyIndex: pIndex,
+            ringIndex: rIndex,
+          });
         });
       });
     });
@@ -325,7 +334,7 @@ export default function Map({
       viewBox={`0 0 ${width} ${height}`}
       role="img"
       aria-label="Карта Закарпатської області"
-      style={{ display: "block", margin: "0 auto" }}
+      style={{ display: 'block', margin: '0 auto' }}
     >
       <rect width="100%" height="100%" fill="#b38e58" rx="8" />
       <g>
@@ -335,12 +344,12 @@ export default function Map({
             <path
               key={`${i}-${p.featureIndex}-${p.polyIndex}-${p.ringIndex}`}
               d={p.d}
-              fill={"#314b10"}
+              fill={'#314b10'}
               strokeWidth={1}
               onMouseEnter={() => setHoveredRegion(p.properties.name)}
               onMouseLeave={() => setHoveredRegion(null)}
               onClick={() => onRegionClick && onRegionClick(p.properties.name)}
-              style={{ cursor: "pointer", transition: "fill 150ms" }}
+              style={{ cursor: 'pointer', transition: 'fill 150ms' }}
             />
           );
         })}
@@ -348,9 +357,16 @@ export default function Map({
 
       <g>
         {cityPoints.map((c) => (
-          <g key={c.id} transform={`translate(${c.x}, ${c.y})`} style={{ cursor: "pointer" }} onClick={() => onCityClick && onCityClick(c.id)}>
+          <g
+            key={c.id}
+            transform={`translate(${c.x}, ${c.y})`}
+            style={{ cursor: 'pointer' }}
+            onClick={() => onCityClick && onCityClick(c.id)}
+          >
             <circle r={6} fill="#b38e58" stroke="#fff" strokeWidth={1.5} />
-            <text x={10} y={4} fontSize={12} fill="#ffff">{c.name}</text>
+            <text x={10} y={4} fontSize={12} fill="#ffff">
+              {c.name}
+            </text>
           </g>
         ))}
       </g>

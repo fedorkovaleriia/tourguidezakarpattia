@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function getFavoritesFromStorage(userId) {
   const data = localStorage.getItem(`favorites_${userId}`);
@@ -10,7 +10,7 @@ function saveFavoritesToStorage(userId, favorites) {
 }
 
 export default function useFavorites(user) {
-  const [favorites, setFavorites] = useState([]); 
+  const [favorites, setFavorites] = useState([]);
   useEffect(() => {
     if (!user) {
       setFavorites([]);
@@ -32,7 +32,7 @@ export default function useFavorites(user) {
   const removeFavorite = (locationId) => {
     if (!user) return;
     if (favorites.includes(locationId)) {
-      const updated = favorites.filter(id => id !== locationId);
+      const updated = favorites.filter((id) => id !== locationId);
       setFavorites(updated);
       saveFavoritesToStorage(user.id, updated);
     }
@@ -45,7 +45,6 @@ export default function useFavorites(user) {
       addFavorite(locationId);
     }
   };
-
 
   const isFavorite = (locationId) => favorites.includes(locationId);
 

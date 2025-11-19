@@ -14,23 +14,23 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-      if (!email.includes('@')) {
-      alert("Email має містити символ @");
-    return;
-      }
-      const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
-      if (!passwordRegex.test(password)) {
+    if (!email.includes('@')) {
+      alert('Email має містити символ @');
+      return;
+    }
+    const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
       alert(
-        "Пароль має містити щонайменше 8 символів і хоча б одну велику літеру"
+        'Пароль має містити щонайменше 8 символів і хоча б одну велику літеру'
       );
       return;
     }
 
     try {
-      register(username, email, password); 
-      navigate('/account'); 
+      register(username, email, password);
+      navigate('/account');
     } catch (error) {
-      alert(error.message); 
+      alert(error.message);
     }
   };
 
