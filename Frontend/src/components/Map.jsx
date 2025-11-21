@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
+
 const zakarpattiaGeoJson = {
   type: 'FeatureCollection',
   features: [
@@ -293,7 +294,6 @@ export default function Map({
   onRegionClick = (name) => console.log('region', name),
 }) {
   const bbox = useMemo(() => computeBBox(zakarpattiaGeoJson.features), []);
-  const [hoveredRegion, setHoveredRegion] = useState(null);
 
   const polygons = useMemo(() => {
     const arr = [];
@@ -338,21 +338,16 @@ export default function Map({
     >
       <rect width="100%" height="100%" fill="#b38e58" rx="8" />
       <g>
-        {polygons.map((p, i) => {
-          const isHovered = hoveredRegion === p.properties.name;
-          return (
-            <path
-              key={`${i}-${p.featureIndex}-${p.polyIndex}-${p.ringIndex}`}
-              d={p.d}
-              fill={'#314b10'}
-              strokeWidth={1}
-              onMouseEnter={() => setHoveredRegion(p.properties.name)}
-              onMouseLeave={() => setHoveredRegion(null)}
-              onClick={() => onRegionClick && onRegionClick(p.properties.name)}
-              style={{ cursor: 'pointer', transition: 'fill 150ms' }}
-            />
-          );
-        })}
+        {polygons.map((p, i) => (
+          <path
+            key={`${i}-${p.featureIndex}-${p.polyIndex}-${p.ringIndex}`}
+            d={p.d}
+            fill={'#314b10'}
+            strokeWidth={1}
+            onClick={() => onRegionClick && onRegionClick(p.properties.name)}
+            style={{ cursor: 'pointer' }}
+          />
+        ))}
       </g>
 
       <g>
