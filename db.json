@@ -16,6 +16,12 @@
       "password": "$2a$10$ylZj72Gi6KsmjlFrCudSOOAlgNdqpybttZjTPGcTjVscjyvvn5l5K",
       "username": "Valeriia",
       "id": 3
+    },
+    {
+      "email": "test1@test.com",
+      "password": "$2a$10$srwICslcptiUTIwNIlloO.VUlVFL5lVBCF73j2ER6pFmbHnTGLpzy",
+      "username": "Valeriia",
+      "id": 4
     }
   ],
   "locations": [
@@ -77,10 +83,16 @@
     }
   ],
   "tours": [],
-
   "cities": [
-  { "id": 1, "name": "Ужгород", "description": "Столиця Закарпаття" },
-  { "id": 2, "name": "Мукачево", "description": "Замок Паланок" }
-]
-
+    {
+      "id": 1,
+      "name": "Ужгород",
+      "description": "Столиця Закарпаття"
+    },
+    {
+      "id": 2,
+      "name": "Мукачево",
+      "description": "Замок Паланок"
+    }
+  ]
 }
