@@ -1,25 +1,16 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db.js';
+import User from './userModel.js';
+import Item from './itemModel.js';
 
-export const Favorite = sequelize.define(
-  'Favorite',
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    placeId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  },
-  {
-    tableName: 'favorites',
-    timestamps: true,
-  }
-);
+const Favorite = sequelize.define('Favorite', {
+  userId: { type: DataTypes.INTEGER, allowNull: false },
+  itemId: { type: DataTypes.INTEGER, allowNull: false }
+});
+
+User.hasMany(Favorite, { foreignKey: 'userId', onDelete: 'CASCADE' });
+Favorite.belongsTo(User, { foreignKey: 'userId' });
+
+Item.hasMany(Favorite, { foreignKey: 'itemId', onDelete: 'CASCADE' });
+Favorite.belongsTo(Item, { foreignKey: 'itemId' });
+export default Favorite;

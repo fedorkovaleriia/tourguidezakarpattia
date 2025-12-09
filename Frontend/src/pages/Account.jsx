@@ -1,44 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import FavoriteLocations from '../components/FavoriteLocation';
+import FavoriteLocation from '../components/FavoriteLocation';
 import FavoriteMiniguides from '../components/FavoriteMiniguides';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import LocationCard from '../components/LocationCard';
 import styles from './styles/Account.module.css';
-import useFavorites from '../hooks/useFavorites'; 
-import synevyr from '../assets/images/synevyr.jpg';
+import useFavorites from '../hooks/useFavorites';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Account() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { favorites = [] } = useFavorites(user);
+const { favorites: favoriteLocations } = useFavorites(user, 'locations');
+const { favorites: favoriteGuides } = useFavorites(user, 'guides');
+  const [tab, setTab] = useState("locations");
+  const [favoriteIds, setFavoriteIds] = useState([]);
 
+  // При зміні користувача або favorites оновлюємо favoriteIds
   useEffect(() => {
     if (!user) {
       navigate('/login');
+      return;
     }
-  }, [user, navigate]);
+    setFavoriteIds(favorites);
+  }, [user, favorites, navigate]);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
-  if (!user) return null;
-
-  const { favorites } = useFavorites(user);
-
-  const [tab, setTab] = useState("locations");
-  const [favoriteIds, setFavoriteIds] = useState([]);
-
-  useEffect(() => {
-    if (user) {
-      setFavoriteIds(favorites);
-    } else {
-      setFavoriteIds([]);
-    }
-  }, [user, favorites]);
+  if (!user) return <p>Завантаження...</p>;
 
   return (
     <>
@@ -55,26 +48,27 @@ export default function Account() {
         <div className={styles.curve}></div>
 
         <div className={styles.buttonWrapper}>
-          <button onClick={() => setTab('locations')} className={styles.actionButton}>
+          <button
+            onClick={() => setTab('locations')}
+            className={styles.actionButton}
+          >
             Обрані локації
           </button>
-
-          <button onClick={() => setTab('miniguides')} className={styles.actionButton}>
+          <button
+            onClick={() => setTab('miniguides')}
+            className={styles.actionButton}
+          >
             Міні-гід
           </button>
-
           <button onClick={handleLogout} className={styles.actionButton}>
             Вийти
           </button>
-
-          
         </div>
 
         <div className={styles.locationsWrapper}>
           
-          {tab === 'locations' && <FavoriteLocations favoriteIds={favoriteIds} />}
-{tab === 'miniguides' && <FavoriteMiniguides />}
-
+  {tab === 'locations' && <FavoriteLocation favoriteIds={favoriteLocations} />}
+  {tab === 'miniguides' && <FavoriteMiniguides favoriteIds={favoriteGuides} />}
         </div>
       </section>
 

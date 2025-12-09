@@ -1,45 +1,43 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.js';
+import express from 'express';
+import Favorite from '../models/favoriteModel.js';
+import Item from '../models/itemModel.js';
+import authMiddleware from '../middleware/authMiddleware.js';
 
-export const Location = sequelize.define(
-  'Location',
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    lat: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    lng: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    rating: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    visits: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    tableName: 'locations',
-    timestamps: true,
+const router = express.Router();
+
+router.get('/', authMiddleware, async (req, res) => {
+  try {
+    const favs = await Favorite.findAll({ where: { userId: req.user.id }, include: Item });
+    res.json(favs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'помилка сервера' });
   }
-);
+});
+
+router.post('/:itemId', authMiddleware, async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    const exists = await Favorite.findOne({ where: { userId: req.user.id, itemId } });
+    if (exists) return res.status(400).json({ message: 'додано в улюблені' });
+
+    const fav = await Favorite.create({ userId: req.user.id, itemId });
+    res.json(fav);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'помилка сервера' });
+  }
+});
+
+router.delete('/:itemId', authMiddleware, async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    await Favorite.destroy({ where: { userId: req.user.id, itemId } });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'помилка сервера' });
+  }
+});
+
+export default router;

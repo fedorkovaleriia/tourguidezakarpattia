@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import styles from './styles/FilterLocation.module.css';
 
-export default function FilterLocation() {
+export default function FilterLocation({ onFilterChange }) {
   const [openType, setOpenType] = useState(false);
   const [selectedType, setSelectedType] = useState('all');
 
   const toggleDropdown = () => setOpenType(!openType);
 
-  const handleSelect = (value) => {
-    setSelectedType(value);
+  const typeMap = {
+    'all': 'all',
+    'Гори': 'mountains',
+    'Термали': 'thermal',
+    'Замки': 'castle',
+    'Винні локації': 'wine',
+    'Озера': 'lake',
+    'Національні парки': 'nationalpark',
+  };
+
+  const handleSelect = (label) => {
+    const backendValue = typeMap[label];
+
+    setSelectedType(label);
     setOpenType(false);
+
+    onFilterChange({
+      type: backendValue,
+    });
   };
 
   return (
@@ -23,7 +39,7 @@ export default function FilterLocation() {
 
         {openType && (
           <ul className={styles.dropdownMenu}>
-            <li onClick={() => handleSelect('Всі')}>Всі</li>
+            <li onClick={() => handleSelect('all')}>Всі</li>
             <li onClick={() => handleSelect('Гори')}>Гори</li>
             <li onClick={() => handleSelect('Термали')}>Термали</li>
             <li onClick={() => handleSelect('Замки')}>Замки</li>

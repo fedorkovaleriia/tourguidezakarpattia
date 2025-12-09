@@ -1,5 +1,5 @@
-import { Favorite } from '../models/favoriteModel.js';
-import { Location } from '../models/locationModel.js';
+import  Favorite  from '../models/favoriteModel.js';
+import Location  from '../models/locationModel.js';
 
 export const getFavorites = async (req, res) => {
   const userId = req.user.id;

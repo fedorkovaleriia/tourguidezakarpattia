@@ -1,15 +1,20 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-export const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
+dotenv.config();
 
-  if (!token) return res.status(401).json({ message: 'No token provided' });
+export default function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ message: 'токена нема' });
+
+  const token = authHeader.split(' ')[1];
+  if (!token) return res.status(401).json({ message: 'токена нема' });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    const data = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = data; 
     next();
-  } catch {
-    res.status(401).json({ message: 'Invalid token' });
+  } catch (err) {
+    return res.status(401).json({ message: 'недайсний токен' });
   }
-};
+}

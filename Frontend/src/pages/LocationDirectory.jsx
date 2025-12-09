@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LocationCard from '../components/LocationCard';
@@ -7,38 +7,38 @@ import MapZak from '../components/Map';
 
 import useFavorites from '../hooks/useFavorites';
 import { useAuth } from '../hooks/useAuth';
-
-import kosyno from '../assets/images/kosyno.jpg';
-import kankiv from '../assets/images/kankiv.jpg';
-import synevyr from '../assets/images/synevyr.jpg';
+import { useItems } from '../hooks/useItems';
 
 import styles from './styles/LocationDirectory.module.css';
 
 export default function LocationDirectory() {
   const { user } = useAuth();
-  const { favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite } = useFavorites(user);
-  const cities = [
-    { id: 11, name: "Канків", lat: 48.14, lng: 23.05 },
-    { id: 12, name: "Косино", lat: 48.33, lng: 22.69 },
-    { id: 13, name: "Синевир", lat: 48.62, lng: 23.56 }
-  ];
+  const { favorites, toggleFavorite } = useFavorites(user);
 
-  const refKankiv = useRef(null);
-  const refKosyno = useRef(null);
-  const refSynevyr = useRef(null);
+  const [filters, setFilters] = useState({});
 
-  const refs = {
-    11: refKankiv,
-    12: refKosyno,
-    13: refSynevyr
-  };
+  // 🔥 Ось тут ми підключаємо хук
+  const locations = useItems(filters);
 
-  const handleCityClick = (cityId) => {
-    const target = refs[cityId];
+  const refs = useRef({});
+
+  // 🔥 перебудовуємо refs коли міняється список локацій
+  useEffect(() => {
+    const newRefs = {};
+    locations.forEach(loc => {
+      newRefs[loc.id] = React.createRef();
+    });
+    refs.current = newRefs;
+  }, [locations]);
+
+  const handleCityClick = (id) => {
+    const target = refs.current[id];
     if (target?.current) {
       target.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  if (!locations.length) return <p>Завантаження локацій...</p>;
 
   return (
     <>
@@ -58,49 +58,36 @@ export default function LocationDirectory() {
               <MapZak
                 width={900}
                 height={520}
-                cities={cities}
+                cities={locations.map(loc => ({
+                  id: loc.id,
+                  name: loc.title,
+                  lat: loc.lat || 0, 
+                  lng: loc.lng || 0
+                }))}
                 onCityClick={handleCityClick}
               />
             </div>
 
             <div className={styles.filterWrapper}>
-              <FilterLocation />
+              {/* 🔥 Тепер фільтр змінює filters → useItems підтягує нові дані */}
+              <FilterLocation onFilterChange={setFilters} />
             </div>
           </div>
         </div>
-]
-          <LocationCard
-            image={kankiv}
-            ref={refKankiv}
-            title="Замок Канків"
-            description="Розташований поблизу міста Виноградів у Закарпатській області, вражає своєю середньовічною архітектурою та мальовничим оточенням."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(11)}
-            onFavoriteToggle={() => toggleFavorite(11)}
-          />]
 
+        {locations.map(loc => (
           <LocationCard
-            image={kosyno}
-            ref={refKosyno}
-            title="Термальні води Косино"
-            description="Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(12)}
-            onFavoriteToggle={() => toggleFavorite(12)}
+            key={loc.id}
+            ref={refs.current[loc.id]}
+            image={loc.image} 
+            title={loc.title}
+            description={loc.description}
+            rating={loc.rating || '5/5'}
+            visits={`${loc.visits || 0} візитів`}
+            isFavorite={favorites.includes(loc.id)}
+            onFavoriteToggle={() => toggleFavorite(loc.id)}
           />
-
-          <LocationCard
-            image={synevyr}
-            ref={refSynevyr}
-            title="Синевирське озеро"
-            description="Розташоване в серці Карпатських гір Закарпаття, вражає кришталево чистою водою та мальовничими лісовими пейзажами."
-            rating="5/5"
-            visits="X візитів"
-            isFavorite={favorites.includes(13)}
-            onFavoriteToggle={() => toggleFavorite(13)}
-          />
+        ))}
       </section>
 
       <Footer page="beige" />

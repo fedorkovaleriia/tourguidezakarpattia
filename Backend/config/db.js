@@ -17,8 +17,8 @@ export const sequelize = new Sequelize(
 export const connectDB = async () => {
   try {
     await sequelize.authenticate();
-    console.log('MySQL connected');
+    console.log('MySQL підключена');
   } catch (error) {
-    console.error('DB error:', error.message);
+    console.error('помилка у бд:', error.message);
   }
 };
