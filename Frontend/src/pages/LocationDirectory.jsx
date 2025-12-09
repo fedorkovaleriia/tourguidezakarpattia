@@ -17,12 +17,10 @@ export default function LocationDirectory() {
 
   const [filters, setFilters] = useState({});
 
-  // 🔥 Ось тут ми підключаємо хук
   const locations = useItems(filters);
 
   const refs = useRef({});
 
-  // 🔥 перебудовуємо refs коли міняється список локацій
   useEffect(() => {
     const newRefs = {};
     locations.forEach(loc => {
@@ -69,7 +67,6 @@ export default function LocationDirectory() {
             </div>
 
             <div className={styles.filterWrapper}>
-              {/* 🔥 Тепер фільтр змінює filters → useItems підтягує нові дані */}
               <FilterLocation onFilterChange={setFilters} />
             </div>
           </div>

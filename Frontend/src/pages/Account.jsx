@@ -17,7 +17,6 @@ const { favorites: favoriteGuides } = useFavorites(user, 'guides');
   const [tab, setTab] = useState("locations");
   const [favoriteIds, setFavoriteIds] = useState([]);
 
-  // При зміні користувача або favorites оновлюємо favoriteIds
   useEffect(() => {
     if (!user) {
       navigate('/login');

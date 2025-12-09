@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 import useFavorites from '../hooks/useFavorites';
+import { useMiniGuides } from '../hooks/useMiniGuides';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MiniGuideCard from '../components/MiniGuideCard';
 import FilterLocation from '../components/FilterLocation';
 import styles from './styles/MiniGuide.module.css';
-import kosyno from '../assets/images/kosyno.jpg';
-import kankiv from '../assets/images/kankiv.jpg';
-import synevyr from '../assets/images/synevyr.jpg';
-import { useAuth } from '../hooks/useAuth';
 
 export default function MiniGuide() {
   const { user } = useAuth();
-    const { favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite } = useFavorites(user);
-  
+  const { favorites, toggleFavorite } = useFavorites(user);
+
+  const [filters, setFilters] = useState({ type: 'all' });
+  const guides = useMiniGuides(filters);
+
+  if (!guides.length) return <p>Завантаження міні-гідів...</p>;
+
   return (
     <>
       <div className={styles.appContainer}>
@@ -25,38 +28,23 @@ export default function MiniGuide() {
 
       <section className={styles.beigeSection}>
         <div className={styles.curve}></div>
+
         <div className={styles.filterWrapper}>
-          <FilterLocation />
+          <FilterLocation onFilterChange={setFilters} />
         </div>
-        <MiniGuideCard
-          image={kankiv}
-          title="Від Паланку до Канкова "
-          route="Мукачево (Замок Паланок) → Виноградів (Замок Канків) → Берегове"
-          rating="5/5"
-          visits="X візитів"
-          isFavorite={favorites.includes(1)}
-          onFavoriteToggle={() => toggleFavorite(1)}
-        />
-        <MiniGuideCard
-          image={kosyno}
-          title="Угорський колорит Закарпаття + Термали"
-          route="Берегово → Термальні води Косино"
-          rating="5/5"
-          visits="X візитів"
 
-          isFavorite={favorites.includes(2)}
-          onFavoriteToggle={() => toggleFavorite(2)}
-        />
-        <MiniGuideCard
-          image={synevyr}
-          title="Легенди Синевиру: день у серці Карпат"
-          route="Міжгір’я → Озеро Синевир → Реабілітаційний центр ведмедів → Колочава"
-          rating="5/5"
-          visits="X візитів"
-
-          isFavorite={favorites.includes(3)}
-          onFavoriteToggle={() => toggleFavorite(3)}
-        />
+        {guides.map((guide) => (
+          <MiniGuideCard
+            key={guide.id}
+            image={guide.image}
+            title={guide.title}
+            route={guide.route}
+            rating={guide.rating || '5/5'}
+            visits={`${guide.visits || 0} візитів`}
+            isFavorite={favorites.includes(guide.id)}
+            onFavoriteToggle={() => toggleFavorite(guide.id)}
+          />
+        ))}
       </section>
 
       <Footer page="beige" />

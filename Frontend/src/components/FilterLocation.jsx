@@ -8,7 +8,7 @@ export default function FilterLocation({ onFilterChange }) {
   const toggleDropdown = () => setOpenType(!openType);
 
   const typeMap = {
-    'all': 'all',
+    'Всі': 'all',
     'Гори': 'mountains',
     'Термали': 'thermal',
     'Замки': 'castle',
@@ -18,8 +18,7 @@ export default function FilterLocation({ onFilterChange }) {
   };
 
   const handleSelect = (label) => {
-    const backendValue = typeMap[label];
-
+    const backendValue = typeMap[label] || 'all'; 
     setSelectedType(label);
     setOpenType(false);
 
@@ -34,20 +33,16 @@ export default function FilterLocation({ onFilterChange }) {
 
       <div className={styles.dropdown}>
         <button onClick={toggleDropdown} className={styles.dropdownButton}>
-          {selectedType === 'all' ? 'Всі типи' : selectedType}
+          {selectedType === 'Всі' || selectedType === 'all' ? 'Всі типи' : selectedType}
         </button>
 
         {openType && (
           <ul className={styles.dropdownMenu}>
-            <li onClick={() => handleSelect('all')}>Всі</li>
-            <li onClick={() => handleSelect('Гори')}>Гори</li>
-            <li onClick={() => handleSelect('Термали')}>Термали</li>
-            <li onClick={() => handleSelect('Замки')}>Замки</li>
-            <li onClick={() => handleSelect('Винні локації')}>Винні локації</li>
-            <li onClick={() => handleSelect('Озера')}>Озера</li>
-            <li onClick={() => handleSelect('Національні парки')}>
-              Національні парки
-            </li>
+            {Object.keys(typeMap).map((label) => (
+              <li key={label} onClick={() => handleSelect(label)}>
+                {label}
+              </li>
+            ))}
           </ul>
         )}
       </div>

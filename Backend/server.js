@@ -5,6 +5,7 @@ import { connectDB, sequelize } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import itemsRoutes from './routes/itemsRoutes.js';
 import favoritesRoutes from './routes/favoritesRoutes.js';
+import miniGuideRoutes from './routes/miniGuideRoutes.js'
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ connectDB();
 app.use('/favorites', favoritesRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/items', itemsRoutes);
+app.use('/api/miniguides', miniGuideRoutes);
 
 sequelize
   .sync({ alter: true })

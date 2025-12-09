@@ -12,6 +12,13 @@ const items = [
     type: "castle",
   },
   {
+    title: "Гора Говерла",
+    description: "Найвища вершина України, висотою 2061 метр. Вона розташована в масиві Чорногора Карпат і є одним із найпопулярніших туристичних маршрутів країни.",
+    image: "../assets/images/kankiv.jpg",
+    lat: 48.09,
+    lng: 24.3,
+    type: "mountains",},
+  {
     title: "Термальні води Косино",
     description: "Термальні басейни Косино у Закарпатті приваблюють відпочивальників цілющою водою та сучасними спа-комплексами.",
     image: "../assets/images/kosyno.jpg",
@@ -52,19 +59,15 @@ const miniGuides = [
 
 (async () => {
   try {
-    // синхронізація моделей
     await sequelize.sync({ alter: true });
 
-    // очищаємо старі записи
    await Item.destroy({ where: {} });
 await MiniGuide.destroy({ where: {} });
 
-    // додаємо нові локації
     for (const item of items) {
       await Item.create(item);
     }
 
-    // додаємо нові міні-гід записи
     for (const guide of miniGuides) {
       await MiniGuide.create(guide);
     }
