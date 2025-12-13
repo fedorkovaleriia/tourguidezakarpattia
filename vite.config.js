@@ -3,6 +3,10 @@ import react from '@vitejs/plugin-react';
 import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
+  server: {
+    host: true,
+    port: 5173,
+  },
   plugins: [
     react(),
     istanbul({
@@ -11,5 +15,6 @@ export default defineConfig({
       cypress: true,   
       requireEnv: false,    
     }),
+    
   ],
 });

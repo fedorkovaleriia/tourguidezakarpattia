@@ -8,7 +8,6 @@ import uzhzamok from '../assets/images/uzhgorodskiyzamok.jpg';
 import mukzamok from '../assets/images/zamokpalanok.jpg';
 
 export default function Home() {
-    
   return (
     <>
       <div className={styles.appContainer}>

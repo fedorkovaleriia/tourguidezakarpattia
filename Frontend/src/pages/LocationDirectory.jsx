@@ -43,17 +43,18 @@ export default function LocationDirectory() {
       <div className={styles.appContainer}>
         <Header />
         <div className={styles.textContainer}>
-          <h1>Каталог локацій</h1>
+          <h1 data-testid="page-title">Каталог локацій</h1>
         </div>
       </div>
 
       <section className={styles.beigeSection}>
         <div className={styles.curve}></div>
 
-        <div className={styles.mapWrapper}>
+        <div data-testid="map-zak" className={styles.mapWrapper}>
           <div className={styles.mapSection}>
             <div className={styles.mapContainer}>
               <MapZak
+                
                 width={900}
                 height={520}
                 cities={locations.map(loc => ({
