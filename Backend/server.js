@@ -4,14 +4,13 @@ import dotenv from 'dotenv';
 import { connectDB, sequelize } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import itemsRoutes from './routes/itemsRoutes.js';
-import miniGuideRoutes from './routes/miniGuideRoutes.js'
+import miniGuideRoutes from './routes/miniGuideRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors({origin:process.env.FRONTEND_URL,credentials:true
-}));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 
 connectDB();
@@ -25,6 +24,6 @@ sequelize
   .then(() => console.log('✅ Таблиці успішно синхронізовані з моделями'))
   .catch((err) => console.error('❌ Помилка синхронізації таблиць:', err));
 
-app.listen(process.env.PORT, () =>
+app.listen(process.env.PORT || 8080, () =>
   console.log(` Сервер запущено на порті ${process.env.PORT}`)
 );
