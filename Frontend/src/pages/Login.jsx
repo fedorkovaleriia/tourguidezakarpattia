@@ -12,16 +12,27 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    await login(email, password); 
-    navigate('/account');         
-  } catch (error) {
-    alert(error.message);
-  }
-};
+    if (!email.includes('@')) {
+      alert("Email має містити символ @");
+      return; 
+    }
 
+    const hasUpperCase = /[A-Z]/.test(password);
+    if (password.length < 8 || !hasUpperCase) {
+       alert("Пароль має містити щонайменше 8 символів і хоча б одну велику літеру");
+       return;
+    }
+
+
+    try {
+      await login(email, password); 
+      navigate('/account');         
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <>
@@ -33,7 +44,7 @@ export default function Login() {
 
           <form className={styles.loginForm} onSubmit={handleLogin}>
             <input
-              type="email"
+              type="email" // Браузерна валідація залишається для звичайних користувачів
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

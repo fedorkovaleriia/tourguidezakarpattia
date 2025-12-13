@@ -8,7 +8,7 @@ export default function Header() {
       <Link className={styles.mainTitle} to ="/">Туристичний гід Закарпаття</Link>
 
       <nav className={styles.navigation}>
-        <a className={styles.separator}>І</a>
+        <span className={styles.separator}>І</span>
               <Link className={styles.navLink} to="/miniguide">Міні-гід</Link>
 
         <Link className={styles.navLink} to="/locationdirectory">Каталог локацій</Link>
