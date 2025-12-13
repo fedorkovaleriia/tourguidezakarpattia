@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { forwardRef } from 'react'; 
 import { FaStar } from 'react-icons/fa';
 import styles from './styles/LocationCard.module.css';
 
-export default function LocationCard({
+const LocationCard = forwardRef(({ 
   image,
   title,
   description,
   rating,
   visits,
-}) {
+  isFavorite,
+  onFavoriteToggle,
+}, ref) => { 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} ref={ref}> 
       <img src={image} alt={title} className={styles.image} />
 
-      <div className={styles.star}>
-        <FaStar size={34} />
+      <div
+        className={styles.star}
+        onClick={onFavoriteToggle}
+        title={isFavorite ? 'Видалити з улюблених' : 'Додати в улюблені'}
+      >
+        <FaStar
+          size={34}
+          color={isFavorite ? '#FFD700' : '#ccc'} 
+        />
       </div>
 
       <div className={styles.info}>
@@ -27,4 +36,6 @@ export default function LocationCard({
       </div>
     </div>
   );
-}
+});
+
+export default LocationCard;

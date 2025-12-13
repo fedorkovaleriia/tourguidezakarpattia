@@ -1,4 +1,17 @@
 {
+  "name": "my-server",
+  "version": "1.0.0",
+  "scripts": {
+    "prepare": "husky install",
+    "server": "json-server --watch db.json --port 3001",
+    "auth": "json-server-auth ./db.json --port 3002"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
+    "react-simple-maps": "^3.0.0"
+  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.4",
     "@eslint/js": "^9.38.0",
@@ -11,9 +24,6 @@
     "husky": "^8.0.0",
     "lint-staged": "^16.2.5",
     "prettier": "^3.6.2"
-  },
-  "scripts": {
-    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
