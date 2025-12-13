@@ -1,2 +1,4 @@
-export default function FavoriteMiniguides() {}
 
+export default function FavoriteMiniguides() {
+  
+}

@@ -1,0 +1,32 @@
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { connectDB, sequelize } from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
+import itemsRoutes from './routes/itemsRoutes.js';
+import favoritesRoutes from './routes/favoritesRoutes.js';
+import miniGuideRoutes from './routes/miniGuideRoutes.js'
+
+dotenv.config();
+
+const app = express();
+
+app.use(cors({origin:process.env.FRONTEND_URL,credentials:true
+}));
+app.use(express.json());
+
+connectDB();
+
+app.use('/favorites', favoritesRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/items', itemsRoutes);
+app.use('/api/miniguides', miniGuideRoutes);
+
+sequelize
+  .sync({ alter: true })
+  .then(() => console.log('✅ Таблиці успішно синхронізовані з моделями'))
+  .catch((err) => console.error('❌ Помилка синхронізації таблиць:', err));
+
+app.listen(process.env.PORT, () =>
+  console.log(` Сервер запущено на порті ${process.env.PORT}`)
+);

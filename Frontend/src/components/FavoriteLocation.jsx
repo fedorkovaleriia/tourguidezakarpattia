@@ -1,4 +1,3 @@
-
-export default function FavoriteLocations() {
-
+export default function FavoriteLocation() {
+  
 }
