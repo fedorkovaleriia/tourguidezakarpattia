@@ -10,11 +10,20 @@
     "d3-geo": "^3.1.1",
     "json-server": "^0.17.4",
     "json-server-auth": "^2.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.2",
     "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.4",
+    "@cypress/code-coverage": "^3.14.7",
+    "@cypress/react": "^9.0.1",
+    "@cypress/vite-dev-server": "^6.0.3",
     "@eslint/js": "^9.38.0",
+    "@vitejs/plugin-react": "^5.1.2",
+    "babel-plugin-istanbul": "^7.0.1",
+    "cypress": "^14.5.4",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -23,7 +32,10 @@
     "globals": "^16.4.0",
     "husky": "^8.0.0",
     "lint-staged": "^16.2.5",
-    "prettier": "^3.6.2"
+    "nyc": "^17.1.0",
+    "prettier": "^3.6.2",
+    "vite": "^7.2.7",
+    "vite-plugin-istanbul": "^7.2.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
